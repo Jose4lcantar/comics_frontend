@@ -8,7 +8,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 })
 export class ComicService {
 
-  baseUri: string = 'http://localhost:4000/api';
+  baseUri: string = 'https://comics-backend-ov8n.onrender.com/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
