@@ -1,0 +1,93 @@
+<div class="container" style="margin: 20px">
+  <h2>Editar Comic</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card-body">
+
+        <form [formGroup]="comicForm" (ngSubmit)="onSubmit()">
+
+          <!-- TÍTULO -->
+          <div class="form-group">
+            <label for="titulo">Título: </label>
+            <input type="text" class="form-control" formControlName="titulo" />
+            @if(enviado && myForm['titulo'].errors?.['required']){
+              <div style="color: red;">Este campo es obligatorio</div>
+            }
+          </div>
+          <br/>
+
+          <!-- GÉNERO -->
+          <div class="form-group">
+            <label for="genero">Género</label>
+            <select class="custom-select form-control" (change)="actualizarGenero($event)" formControlName="genero">
+              <option value="">Selecciona un género...</option>
+              @for(genero of comicGenero; track genero){
+                <option [value]="genero">{{ genero }}</option>
+              }
+            </select>
+            @if(enviado && myForm['genero'].errors?.['required']){
+              <div style="color: red;">Debes seleccionar un género</div>
+            }
+          </div>
+          <br/>
+
+          <!-- EDITORIAL -->
+          <div class="form-group">
+            <label for="editorial">Editorial: </label>
+            <input type="text" class="form-control" formControlName="editorial" />
+            @if(enviado && myForm['editorial'].errors?.['required']){
+              <div style="color: red;">Este campo es obligatorio</div>
+            }
+          </div>
+          <br/>
+
+          <!-- AÑO -->
+          <div class="form-group">
+            <label for="anio">Año de publicación: </label>
+            <input type="number" class="form-control" formControlName="anio" />
+            @if(enviado && myForm['anio'].errors?.['required']){
+              <div style="color: red;">Este campo es obligatorio</div>
+            }
+            @if(enviado && myForm['anio'].errors?.['pattern']){
+              <div style="color: red;">Solo se permiten números (ejemplo: 2025)</div>
+            }
+          </div>
+          <br/>
+
+          <!-- AUTOR -->
+          <div class="form-group">
+            <label for="autor">Autor: </label>
+            <input type="text" class="form-control" formControlName="autor" />
+            @if(enviado && myForm['autor'].errors?.['required']){
+              <div style="color: red;">Este campo es obligatorio</div>
+            }
+          </div>
+          <br/>
+
+          <!-- URL IMAGEN -->
+          <div class="form-group">
+            <label for="imagenUrl">URL de la imagen</label>
+            <input type="text" class="form-control" formControlName="imagenUrl" placeholder="Pega aquí el enlace de la imagen" />
+            @if(enviado && myForm['imagenUrl'].errors?.['required']){
+              <div style="color: red;">Este campo es obligatorio</div>
+            }
+            @if(enviado && myForm['imagenUrl'].errors?.['pattern']){
+              <div style="color: red;">Por favor ingresa una URL válida</div>
+            }
+          </div>
+          <br/>
+
+          <!-- BOTÓN -->
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">
+              Editar comic
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container" style="margin: 20px;">
+  <h2>Listado de Cómics</h2>
+
+  @if(comics.length <= 0) {
+    <p class="text-center">
+      No hay cómics registrados
+    </p>
+  } @else {
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th>ID Cómic</th>
+          <th>Imagen</th>
+          <th>Título</th>
+          <th>Género</th>
+          <th>Editorial</th>
+          <th>Año</th>
+          <th>Autor</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(comic of comics; track comic._id; let i=$index) {
+          <tr>
+            <td>{{ comic._id }}</td>
+            <td>
+              <img *ngIf="comic.imagenUrl" [src]="comic.imagenUrl" alt="Imagen de {{comic.titulo}}" style="max-width: 80px; max-height: 80px;"/>
+            </td>
+            <td>{{ comic.titulo }}</td>
+            <td>{{ comic.genero }}</td>
+            <td>{{ comic.editorial }}</td>
+            <td>{{ comic.anio }}</td>
+            <td>{{ comic.autor }}</td>
+            <td>
+              <a [routerLink]="['/editar-comic', comic._id]" class="btn btn-warning btn-sm">
+                Editar
+              </a>
+            </td>
+            <td>
+              <a (click)="eliminarComic(comic, i)" class="btn btn-danger btn-sm">
+                Eliminar
+              </a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
