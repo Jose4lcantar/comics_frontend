@@ -6,18 +6,18 @@ import { ComicService } from '../../services/comic.service';
 @Component({
   selector: 'app-listar-comic',
   standalone: true,
-  imports: [CommonModule, RouterLink], // ✅ Arreglo aquí
+  imports: [CommonModule, RouterLink],
   templateUrl: './listar-comic.component.html',
   styleUrls: ['./listar-comic.component.css']
 })
 export class ListarComicComponent implements OnInit {
   comics: any = [];
 
-  constructor(private comicService: ComicService) {
-    this.getComics();
-  }
+  constructor(private comicService: ComicService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getComics(); 
+  }
 
   getComics(): void {
     this.comicService.getComics().subscribe((data) => {
